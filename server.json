@@ -5,6 +5,7 @@
       "description": "Desenvolvimento de app",
       "type": "income",
       "amount": 12000,
+      "category": "Vendas",
       "createdAt": "2024-01-17T03:46:56.715Z"
     },
     {
@@ -12,6 +13,7 @@
       "description": "Sushi",
       "type": "outcome",
       "amount": 80,
+      "category": "Alimentação",
       "createdAt": "2024-01-17T03:57:56.715Z"
     }
   ]
