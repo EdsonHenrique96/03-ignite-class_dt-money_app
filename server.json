@@ -23,6 +23,14 @@
       "amount": 1900,
       "category": "Moradia",
       "createdAt": "2024-03-17T03:57:56.715Z"
+    },
+    {
+      "description": "Prime Street",
+      "amount": 10000,
+      "category": "Vendas",
+      "type": "income",
+      "createdAt": "2024-01-21T22:18:34.311Z",
+      "id": 4
     }
   ]
 }
