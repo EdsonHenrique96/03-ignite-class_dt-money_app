@@ -10,7 +10,8 @@ import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react';
 import * as z from 'zod';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { api } from '../../lib/axios';
+import { useContext } from 'react';
+import { TransactionsContext } from '../../context/TransactionsContext';
 
 const createTransactionSchema = z.object({
   description: z.string().min(1, 'digite uma descrição'),
@@ -22,11 +23,13 @@ const createTransactionSchema = z.object({
 type createTransactionSchemaType = z.infer<typeof createTransactionSchema>;
 
 export function NewTransactionModal() {
+  const { createTransaction } = useContext(TransactionsContext);
   const {
     control,
     register,
     handleSubmit,
     formState: { isSubmitting },
+    reset,
   } = useForm<createTransactionSchemaType>({
     resolver: zodResolver(createTransactionSchema),
     defaultValues: {
@@ -37,13 +40,9 @@ export function NewTransactionModal() {
   const handleCreateTransaction = async (data: createTransactionSchemaType) => {
     const { description, amount, category, type } = data;
 
-    await api.post('/transactions', {
-      description,
-      amount,
-      category,
-      type,
-      createdAt: new Date(),
-    });
+    await createTransaction({ description, amount, category, type });
+
+    reset();
   };
 
   return (
